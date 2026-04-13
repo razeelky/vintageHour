@@ -15,5 +15,9 @@ router.get('/:id', getWatchById);
 router.post('/', protect, authorize('admin'), createWatch);
 router.put('/:id', protect, authorize('admin'), updateWatch);
 router.delete('/:id', protect, authorize('admin'), deleteWatch);
+app.get("/api/products", async (req, res) => {
+  const products = await Product.find();
+  res.json(products);
+});
 
 module.exports = router;
