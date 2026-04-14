@@ -4,7 +4,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import { fetchWatches } from '../api/watchApi'
 import { useCart } from '../hooks/useCart'
 import { useAuth } from '../hooks/useAuth'
-import axios from 'axios'
 
 function Landing() {
   const [watches, setWatches] = useState([])
@@ -12,13 +11,6 @@ function Landing() {
   const { addItem } = useCart()
   const { isAuthenticated } = useAuth()
   const navigate = useNavigate()
-
-const fetchWatches = async () => {
-  const res = await axios.get(
-    "https://vintagehour.onrender.com/api/watches"
-  );
-  console.log(res.data);
-};
 
   useEffect(() => {
     const loadWatches = async () => {

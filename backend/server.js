@@ -15,13 +15,20 @@ connectDB();
 
 const app = express();
 
-const allowedOrigins = new Set(
-  [
-    process.env.CLIENT_URL,
-    'http://localhost:5173',
-    'http://127.0.0.1:5173',
-  ].filter(Boolean)
-);
+const configuredOrigins = [
+  process.env.CLIENT_URL,
+  process.env.CLIENT_URLS,
+]
+  .filter(Boolean)
+  .flatMap((value) => value.split(','))
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+
+const allowedOrigins = new Set([
+  ...configuredOrigins,
+  'http://localhost:5173',
+  'http://127.0.0.1:5173',
+]);
 
 const isAllowedDevOrigin = (origin) =>
   /^http:\/\/(localhost|127\.0\.0\.1):\d+$/.test(origin);

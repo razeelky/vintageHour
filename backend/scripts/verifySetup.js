@@ -11,14 +11,20 @@ const fail = (message) => {
 };
 
 const run = async () => {
+  const nodeEnv = (process.env.NODE_ENV || '').trim().toLowerCase();
+  const isProduction = nodeEnv === 'production';
   const port = String(process.env.PORT || '').trim();
   const configuredDbName = (process.env.MONGO_DB_NAME || '').trim();
 
-  if (port !== EXPECTED_PORT) {
+  if (!isProduction && port !== EXPECTED_PORT) {
     fail(`PORT must be ${EXPECTED_PORT} for local development. Current value: ${port || '(missing)'}`);
   }
 
-  if (configuredDbName !== DEFAULT_DB_NAME) {
+  if (!configuredDbName) {
+    fail('MONGO_DB_NAME is missing.');
+  }
+
+  if (!isProduction && configuredDbName !== DEFAULT_DB_NAME) {
     fail(
       `MONGO_DB_NAME must be ${DEFAULT_DB_NAME}. Current value: ${configuredDbName || '(missing)'}`
     );
