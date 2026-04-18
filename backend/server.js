@@ -33,10 +33,19 @@ const allowedOrigins = new Set([
 const isAllowedDevOrigin = (origin) =>
   /^http:\/\/(localhost|127\.0\.0\.1):\d+$/.test(origin);
 
+const isAllowedDeploymentOrigin = (origin) =>
+  /^https:\/\/[a-z0-9-]+\.vercel\.app$/i.test(origin) ||
+  /^https:\/\/[a-z0-9-]+\.onrender\.com$/i.test(origin);
+
 app.use(
   cors({
     origin(origin, callback) {
-      if (!origin || allowedOrigins.has(origin) || isAllowedDevOrigin(origin)) {
+      if (
+        !origin ||
+        allowedOrigins.has(origin) ||
+        isAllowedDevOrigin(origin) ||
+        isAllowedDeploymentOrigin(origin)
+      ) {
         return callback(null, true);
       }
 
