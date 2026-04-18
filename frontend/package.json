@@ -4,9 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "node scripts/verifySetup.js && vite --host 127.0.0.1",
+    "dev": "vite --host 127.0.0.1",
     "build": "vite build",
-    "check": "node scripts/verifySetup.js",
     "lint": "eslint .",
     "preview": "vite preview"
   },

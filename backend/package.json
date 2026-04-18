@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "dev": "node scripts/verifySetup.js && node ./node_modules/nodemon/bin/nodemon.js server.js",
-    "start": "node scripts/verifySetup.js && node server.js",
-    "check": "node scripts/verifySetup.js",
+    "dev": "node ./node_modules/nodemon/bin/nodemon.js server.js",
+    "start": "node server.js",
     "backfill:movement": "node scripts/backfillMovement.js"
   },
   "dependencies": {
