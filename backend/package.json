@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js",
+    "dev": "node server.js",
+    "dev:watch": "nodemon server.js",
     "start": "node server.js",
     "backfill:movement": "node scripts/backfillMovement.js"
   },
